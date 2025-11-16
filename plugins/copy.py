@@ -4,9 +4,9 @@ from pyrogram.errors import FloodWait
 from pyrogram import Client, filters, enums
 
 logger = logging.getLogger(__name__)
-media_filter = filters.video | filters.document
+media_filter = filters.video | filters.document | filters.audio
 
-@Client.on_message(filters.channel & media_filter)
+@Client.on_message((filters.group | filters.channel) & media_filter)
 async def forward_media(bot, message):
     try:
         chat = await bot.db.get_channel()
@@ -53,3 +53,4 @@ async def forward_media(bot, message):
 
     except Exception as e:
         logger.error(f"❌ Forwarding failed: {e}")
+    
