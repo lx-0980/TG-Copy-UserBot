@@ -15,7 +15,7 @@ class UserBot(Client):
             sleep_threshold=10
         )
         self.LOGGER = LOGGER
-        self.db = Database()  # ✅ Database instance
+        self.db = Database()
 
     async def start(self, *args, **kwargs):
         await super().start(*args, **kwargs)
